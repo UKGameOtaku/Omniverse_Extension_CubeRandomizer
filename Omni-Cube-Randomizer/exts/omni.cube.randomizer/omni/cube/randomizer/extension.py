@@ -1,7 +1,8 @@
 import omni.ext
 import omni.ui as ui
 import omni.usd
-from pxr import UsdGeom
+from pxr import UsdGeom, Gf
+import random
 
 
 # Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
@@ -36,6 +37,8 @@ class OmniCubeRandomizerExtension(omni.ext.IExt):
                     stage = usd_context.get_stage()
                     cube_path = '/World/Cube'
                     cube = UsdGeom.Cube.Define(stage, cube_path)
+                    cube.CreateSizeAttr(random.random())
+                    cube.CreateDisplayColorAttr([Gf.Vec3f(random.random(), random.random(), random.random())])
 
                 def on_reset():
                     self._count = 0

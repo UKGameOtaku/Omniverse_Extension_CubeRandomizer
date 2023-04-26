@@ -1,5 +1,6 @@
 import omni.ext
 import omni.ui as ui
+import omni.usd
 
 
 # Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`

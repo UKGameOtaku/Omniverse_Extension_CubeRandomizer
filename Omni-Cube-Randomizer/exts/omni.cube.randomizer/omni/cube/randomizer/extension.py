@@ -1,6 +1,7 @@
 import omni.ext
 import omni.ui as ui
 import omni.usd
+from pxr import UsdGeom
 
 
 # Functions and vars are available to other extension as usual in python: `example.python_ext.some_public_function(x)`
@@ -18,6 +19,8 @@ class OmniCubeRandomizerExtension(omni.ext.IExt):
     def on_startup(self, ext_id):
         print("[omni.cube.randomizer] omni cube randomizer startup")
 
+        usd_context = omni.usd.get_context()
+
         self._count = 0
 
         self._window = ui.Window("My Window", width=300, height=300)
@@ -29,6 +32,10 @@ class OmniCubeRandomizerExtension(omni.ext.IExt):
                 def on_click():
                     self._count += 1
                     label.text = f"count: {self._count}"
+
+                    stage = usd_context.get_stage()
+                    cube_path = '/World/Cube'
+                    cube = UsdGeom.Cube.Define(stage, cube_path)
 
                 def on_reset():
                     self._count = 0

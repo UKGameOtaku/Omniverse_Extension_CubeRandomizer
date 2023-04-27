@@ -24,11 +24,10 @@ class OmniCubeRandomizerExtension(omni.ext.IExt):
 
         self._count = 0
 
-        self._window = ui.Window("My Window", width=300, height=300)
+        self._window = ui.Window("Cube Randomizer", width=300, height=300)
         with self._window.frame:
             with ui.VStack():
-                label = ui.Label("")
-
+                label = ui.Label("Creates a Cube with randomized Size and Shape")
 
                 def on_click():
                     self._count += 1
@@ -47,7 +46,7 @@ class OmniCubeRandomizerExtension(omni.ext.IExt):
                 on_reset()
 
                 with ui.HStack():
-                    ui.Button("Add", clicked_fn=on_click)
+                    ui.Button("Randomize", clicked_fn=on_click)
                     ui.Button("Reset", clicked_fn=on_reset)
 
     def on_shutdown(self):
